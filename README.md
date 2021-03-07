@@ -1,2 +1,2 @@
-# hav-webapp0-test
+# hav-webapp-test
 HAV and AV Glove webapp development
