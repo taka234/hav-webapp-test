@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+<title>Test for Mobile Device</title>
+
+<link rel="stylesheet" href="https://s3.amazonaws.com/codiqa-cdn/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+<link rel="stylesheet" href="my.css" />
+
+<script src="https://s3.amazonaws.com/codiqa-cdn/jquery-1.7.2.min.js"></script>
+<script src="https://s3.amazonaws.com/codiqa-cdn/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+<script src="my.js"></script>
+
+<script language="JavaScript">
+	function calc()
+	{
+		var datA, datB, datC, datD, datE, datF;
+		datA = eval(document.form01.txt01.value);
+		datB = datA / 0.000001;
+		datC = Math.log(datB) / Math.log(10);
+		datD = datC * 1000;
+		datE = Math.round(datD);
+		datF = datE / 1000;
+				document.form01.txt04.value = 20 * datF;
+	}
+</script>
+
+<!-- Following JavaScript is refered from -->
+<!-- Playing with javascript, iPhone and devicemotion event listener -->
+<!-- September 5, 2011, Javascript by Emanuele Feronato -->
+<!-- http://www.emanueleferonato.com/2011/09/05/playing-with-javascript-iphone-and-devicemotion-event-listener/ -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		window.addEventListener("devicemotion",onDeviceMotion,false);
+	});
+
+	function onDeviceMotion(event){
+		var ctx = document.getElementById("c").getContext("2d");
+		var accel = event.accelerationIncludingGravity;
+		$("#sliderX").val(accel.x).slider("refresh");
+		$("#sliderY").val(accel.y).slider("refresh"); 
+		$("#sliderZ").val(accel.z).slider("refresh");
+		var angle = Math.atan2(accel.y,accel.x)  
+		ctx.clearRect(0,0,100,100);
+		ctx.beginPath();
+		ctx.arc(50,50,5,0,2*Math.PI,false);
+		ctx.moveTo(50,50);
+		ctx.lineTo(50-50*Math.cos(angle),50+50*Math.sin(angle));
+		ctx.stroke();
+	}
+</script>
+
+<!-- User-generated css -->
+<style>
+</style>
+
+<!-- User-generated js -->
+<script>
+try {
+
+    $(function() {
+
+    });
+
+  } catch (error) {
+    console.error("Your javascript has an error: " + error);
+  }
+</script>
+
+</head>
+<body>
+<!-- Home -->
+	<div data-role="page" id="page1">
+		<div data-theme="" data-role="header">
+			<h3>
+				Test for Mobile Device
+			</h3>
+		</div>
+		<div data-role="content">
+			<div data-role="collapsible-set">
+				<div data-role="collapsible">
+					<h3>
+						Acceleration to dB Conversion
+					</h3>
+<form name="form01">
+	Acceleration [m/s-2] = <input type="text" name="txt01" size="10"><br>
+	<input type="button" value="calculate!" onclick="calc()"><br>
+	dB Acceleration = <input type="text" name="txt04" size="10"><br>
+</form>
+
+				</div>
+				<div data-role="collapsible">
+					<h3>
+						Read OnBoard Accelerometer
+					</h3>
+<div data-role="content">
+	<label for="sliderX">X Acceleration</label>
+	<input type="range" name="sliderX" id="sliderX" value="0" min="-20" max="20" data-theme="a" />
+
+	<label for="sliderY">Y Acceleration</label>
+	<input type="range" name="sliderY" id="sliderY" value="0" min="-20" max="20" data-theme="b" />
+
+	<label for="sliderZ">Z Acceleration</label>
+	<input type="range" name="sliderZ" id="sliderZ" value="0" min="-20" max="20" data-theme="c" />
+</div>
+				</div>
+
+				<div data-role="collapsible">
+					<h3>
+						Visualize OnBoard Accelerometer
+					</h3>
+<div style = "text-align:center;margin-top:10px;">
+	<canvas id="c" width="100" height="100"></canvas>
+</div>
+				</div>
+
+				<div data-role="collapsible">
+					<h3>
+						Detail Reading - OnBoard Accelerometer
+					</h3>
+
+<!-- Following JavaScript is refered from -->
+<!-- iPhoneの加速度センサー、ジャイロセンサーテスト -->
+<!-- http://zapanet.info/blog/item/2466 -->
+<div id="ac"></div>
+<script language="javascript">
+<!--
+window.addEventListener('devicemotion', function(evt) {
+  //加速度
+  var ac = evt.acceleration;
+  var temp = "Ax:" + ac.x +"<br>"; //x方向の加速度
+  temp += "Ay:" + ac.y +"<br>";    //y方向の加速度
+  temp += "Az:" + ac.z +"<br><br>";    //z方向の加速度
+  
+  //傾き
+  var acg = evt.accelerationIncludingGravity;
+  temp += "Axg:" + acg.x +"<br>"; //x方向の傾き
+  temp += "Ayg:" + acg.y +"<br>"; //y方向の傾き
+  temp += "Azg:" + acg.z +"<br><br>"; //z方向の傾き
+  
+  //回転加速度
+  var rr = evt.rotationRate;
+  temp += "rr_alpha:" + rr.alpha +"<br>"; //z軸の回転加速度
+  temp += "rr_beta:" + rr.beta +"<br>";  //x軸の回転加速度
+  temp += "rr_gamma:" + rr.gamma +"<br><br>"; //y軸の回転加速度
+  
+  document.getElementById("ac").innerHTML = temp;
+});
+-->
+</script>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

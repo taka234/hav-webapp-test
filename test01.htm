@@ -1,0 +1,25 @@
+<html>
+<head>
+<script language="JavaScript">
+	function calc()
+	{
+		var datA, datB, datC, datD, datE, datF;
+		datA = eval(document.form01.txt01.value);
+		datB = datA / 0.000001;
+		datC = Math.log(datB) / Math.log(10);
+		datD = datC * 1000;
+		datE = Math.round(datD);
+		datF = datE / 1000;
+				document.form01.txt04.value = 20 * datF;
+	}
+</script>
+</head>
+
+<body>
+<form name="form01">
+	Acceleration [m/s-2] = <input type="text" name="txt01" size="10"><br>
+	<input type="button" value="calculate!" onclick="calc()"><br>
+	dB Acceleration = <input type="text" name="txt04" size="10"><br>
+</form>
+</body>
+</html>
